@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <AppHeader />
-        <AppList />
+        <AppList todos={this.state.todos} />
         <AppAddTodo />
       </div>
     );
