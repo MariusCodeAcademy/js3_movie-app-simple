@@ -9,6 +9,10 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+img {
+  max-width: 100%;
+}
+
 /* App js  */
 
 .App {
