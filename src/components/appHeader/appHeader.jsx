@@ -10,6 +10,8 @@ class AppHeader extends Component {
     return (
       <header>
         <img className="hero" src={heroImg} alt="Very nice view of a sky" />
+        {/* gauti snd tada ir atvaizduoti  */}
+        <p className="hero-date">2021</p>
       </header>
     );
   }

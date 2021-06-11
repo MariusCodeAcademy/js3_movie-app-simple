@@ -7,6 +7,7 @@
 
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #333;
 }
 
 img {
@@ -16,6 +17,11 @@ img {
 /* App js  */
 
 .App {
-  max-width: 80%;
+  max-width: 600px;
   margin: 0 auto;
+  margin-top: 7%;
+  border-radius: 1em;
+  border: 1px solid #333;
+  overflow: hidden;
+  padding: 1em;
 }
