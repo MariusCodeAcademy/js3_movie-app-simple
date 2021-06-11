@@ -6,14 +6,18 @@ class AppAddTodo extends Component {
   };
 
   handleChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({ newTodo: event.target.value });
+  };
+
+  handleAddTodo = () => {
+    console.log(this.state.newTodo);
   };
 
   render() {
     return (
       <div className="add-todo-container">
-        <i className="fa fa-plus-circle"></i>
+        <i onClick={this.handleAddTodo} className="fa fa-plus-circle"></i>
         <input
           onChange={this.handleChange}
           value={this.state.newTodo}
