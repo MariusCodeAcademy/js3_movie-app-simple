@@ -8,7 +8,7 @@ class AppList extends Component {
     return (
       <ul className="todo-list">
         {this.props.todos.map((t) => (
-          <TodoEl singleTodo={t} key={t.id}></TodoEl>
+          <TodoEl onDoneUndone={this.props.onDoneUndone} singleTodo={t} key={t.id}></TodoEl>
         ))}
       </ul>
     );

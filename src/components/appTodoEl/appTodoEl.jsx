@@ -8,11 +8,11 @@ class AppTodoEl extends Component {
   // paspaudus pirma icona bublinam eventa iki app.jsx ir ten vygdom handleCheckUncheck
   state = {};
   render() {
-    const { title, isDone } = this.props.singleTodo;
+    const { id, title, isDone } = this.props.singleTodo;
 
     return (
       <li className="app-todo-el">
-        <i className={this.setCheckClasses(isDone)}></i>
+        <i onClick={() => this.props.onDoneUndone(id)} className={this.setCheckClasses(isDone)}></i>
         <span className={isDone ? 'doneTitle' : ''}>{title}</span>
         <i className="fa fa-pencil"></i>
         <i className="fa fa-trash"></i>
