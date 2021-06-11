@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoEl from '../appTodoEl/appTodoEl';
 import './style.css';
 class AppList extends Component {
   state = {};
@@ -7,7 +8,7 @@ class AppList extends Component {
     return (
       <ul className="todo-list">
         {this.props.todos.map((t) => (
-          <li key={t.id}>{t.title}</li>
+          <TodoEl singleTodo={t} key={t.id}></TodoEl>
         ))}
       </ul>
     );
