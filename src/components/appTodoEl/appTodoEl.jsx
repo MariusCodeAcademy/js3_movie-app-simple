@@ -15,7 +15,7 @@ class AppTodoEl extends Component {
         <i onClick={() => this.props.onDoneUndone(id)} className={this.setCheckClasses(isDone)}></i>
         <span className={isDone ? 'doneTitle' : ''}>{title}</span>
         <i className="fa fa-pencil"></i>
-        <i className="fa fa-trash"></i>
+        <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
       </li>
     );
   }

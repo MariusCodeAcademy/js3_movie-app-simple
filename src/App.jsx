@@ -21,15 +21,32 @@ class App extends Component {
     console.log('done undone', idToCheckUncheck);
 
     // pasidaryti todos kopija
+    const todos = [...this.state.todos];
 
     // surasti todo kuris paspaude ir pakeisti jo busena
+    const found = todos.find((t) => t.id === idToCheckUncheck);
+
+    // pakeisti isDone
+    found.isDone = !found.isDone;
+
+    this.setState({ todos });
+  };
+
+  handleDelete = (idOfTodoThatWasPressed) => {
+    console.log('delete pressed', idOfTodoThatWasPressed);
+
+    // filter todos to not include the one that was pressed delete on
   };
 
   render() {
     return (
       <div className="App">
         <AppHeader />
-        <AppList onDoneUndone={this.handleDoneUndone} todos={this.state.todos} />
+        <AppList
+          onDelete={this.handleDelete}
+          onDoneUndone={this.handleDoneUndone}
+          todos={this.state.todos}
+        />
         <AppAddTodo />
       </div>
     );
