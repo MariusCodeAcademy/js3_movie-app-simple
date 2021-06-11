@@ -12,7 +12,7 @@ class App extends Component {
       { id: 1, isDone: false, title: 'Buy Milk' },
       { id: 2, isDone: true, title: 'Buy Tv' },
       { id: 3, isDone: false, title: 'Go to Park' },
-      { id: 4, isDone: false, title: 'Learn React' },
+      { id: 4, isDone: true, title: 'Learn React' },
     ],
   };
   render() {
