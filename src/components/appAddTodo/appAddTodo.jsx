@@ -17,7 +17,10 @@ class AppAddTodo extends Component {
   render() {
     return (
       <div className="add-todo-container">
-        <i onClick={this.handleAddTodo} className="fa fa-plus-circle"></i>
+        <i
+          onClick={() => this.props.onAddTodo(this.state.newTodo)}
+          className="fa fa-plus-circle"
+        ></i>
         <input
           onChange={this.handleChange}
           value={this.state.newTodo}

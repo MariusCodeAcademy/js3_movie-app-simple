@@ -9,11 +9,12 @@ import './app.css';
 class App extends Component {
   state = {
     todos: [
-      { id: 1, isDone: false, title: 'Buy Milk', isEditOn: false },
+      { id: 1, isDone: false, title: 'Buy Milk', isEditOn: true },
       { id: 2, isDone: true, title: 'Buy Tv' },
       { id: 3, isDone: false, title: 'Go to Park' },
       { id: 4, isDone: true, title: 'Learn React' },
     ],
+    currentTodoId: 4,
   };
 
   handleDoneUndone = (idToCheckUncheck) => {
@@ -41,6 +42,18 @@ class App extends Component {
     this.setState({ todos: todosWithoutOne });
   };
 
+  handleAddTodo = (todoTitle) => {
+    console.log('add new todo', todoTitle);
+
+    // todos state copija
+
+    // sukuriam nauja todo obj (panaudojam currentTodoId)
+
+    // pridedam prie kopijos nauja todo obj
+
+    // set State atnaujima, todos ir currentTodoId
+  };
+
   render() {
     return (
       <div className="App">
@@ -50,7 +63,7 @@ class App extends Component {
           onDoneUndone={this.handleDoneUndone}
           todos={this.state.todos}
         />
-        <AppAddTodo />
+        <AppAddTodo onAddTodo={this.handleAddTodo} />
       </div>
     );
   }

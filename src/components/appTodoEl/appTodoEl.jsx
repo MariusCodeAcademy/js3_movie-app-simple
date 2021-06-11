@@ -6,14 +6,27 @@ class AppTodoEl extends Component {
   // fa-check-circle - done  fa-circle-thin - kai ne done
 
   // paspaudus pirma icona bublinam eventa iki app.jsx ir ten vygdom handleCheckUncheck
-  state = {};
+  state = {
+    editTitle: this.props.singleTodo.title,
+  };
+
+  handleChange = (event) => {
+    this.setState({ editTitle: event.target.value });
+  };
+
   render() {
-    const { id, title, isDone } = this.props.singleTodo;
+    const { id, title, isDone, isEditOn } = this.props.singleTodo;
+
+    const spanOrTodo = isEditOn ? (
+      <input type="text" value={this.state.editTitle} onChange={this.handleChange} />
+    ) : (
+      <span className={isDone ? 'doneTitle' : ''}>{title}</span>
+    );
 
     return (
       <li className="app-todo-el">
         <i onClick={() => this.props.onDoneUndone(id)} className={this.setCheckClasses(isDone)}></i>
-        <span className={isDone ? 'doneTitle' : ''}>{title}</span>
+        {spanOrTodo}
         <i className="fa fa-pencil"></i>
         <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
       </li>
