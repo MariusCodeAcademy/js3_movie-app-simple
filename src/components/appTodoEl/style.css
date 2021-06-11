@@ -10,3 +10,8 @@
 .app-todo-el i:last-child {
   float: right;
 }
+
+.doneTitle {
+  text-decoration: line-through;
+  color: gray;
+}
