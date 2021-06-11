@@ -29,6 +29,7 @@ class App extends Component {
     // pakeisti isDone
     found.isDone = !found.isDone;
 
+    //              todos: todos
     this.setState({ todos });
   };
 
@@ -36,6 +37,8 @@ class App extends Component {
     console.log('delete pressed', idOfTodoThatWasPressed);
 
     // filter todos to not include the one that was pressed delete on
+    const todosWithoutOne = this.state.todos.filter((t) => t.id !== idOfTodoThatWasPressed);
+    this.setState({ todos: todosWithoutOne });
   };
 
   render() {
