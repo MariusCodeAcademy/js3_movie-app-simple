@@ -7,7 +7,14 @@ import AppAddTodo from './components/appAddTodo/appAddTodo';
 import './app.css';
 
 class App extends Component {
-  state = {};
+  state = {
+    todos: [
+      { id: 1, isDone: false, title: 'Buy Milk' },
+      { id: 2, isDone: true, title: 'Buy Tv' },
+      { id: 3, isDone: false, title: 'Go to Park' },
+      { id: 4, isDone: false, title: 'Learn React' },
+    ],
+  };
   render() {
     return (
       <div className="App">
