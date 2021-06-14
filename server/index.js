@@ -6,6 +6,9 @@ const { mongoDbString } = require('./config/config');
 
 const PORT = 3002;
 
+// middle ware - to get req.body in json
+app.use(express.json());
+
 const todoApi = require('./api/todoApi');
 
 app.use('/', todoApi);
