@@ -9,12 +9,12 @@ import './app.css';
 class App extends Component {
   state = {
     todos: [
-      { id: 1, isDone: false, title: 'Buy Milk', isEditOn: true },
+      { id: 1, isDone: false, title: 'Buy Milk', isEditOn: false },
       { id: 2, isDone: true, title: 'Buy Tv', isEditOn: false },
       { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
       { id: 4, isDone: true, title: 'Learn React', isEditOn: false },
     ],
-    currentTodoId: 4,
+    currentTodoId: 5,
   };
 
   handleEdit = (editId, newTitleVal) => {
@@ -52,12 +52,20 @@ class App extends Component {
     console.log('add new todo', todoTitle);
 
     // todos state copija
+    const todosPlusNew = [...this.state.todos];
 
     // sukuriam nauja todo obj (panaudojam currentTodoId)
-
+    const newTodo = {
+      id: this.state.currentTodoId,
+      isDone: false,
+      title: todoTitle,
+      isEditOn: false,
+    };
     // pridedam prie kopijos nauja todo obj
+    todosPlusNew.push(newTodo);
 
     // set State atnaujima, todos ir currentTodoId
+    this.setState({ todos: todosPlusNew, currentTodoId: this.state.currentTodoId + 1 });
   };
 
   render() {
