@@ -9,13 +9,25 @@ import './app.css';
 class App extends Component {
   state = {
     todos: [
-      { id: 1, isDone: false, title: 'Buy Milk', isEditOn: true },
+      { id: 1, isDone: false, title: 'Buy Milk', isEditOn: false },
       { id: 2, isDone: true, title: 'Buy Tv', isEditOn: false },
       { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
       { id: 4, isDone: true, title: 'Learn React', isEditOn: false },
     ],
     currentTodoId: 5,
   };
+
+  componentDidMount() {
+    this.sortTodos();
+  }
+
+  sortTodos() {
+    const todos = [...this.state.todos];
+    // issirkuoti pagal isDone
+    todos.sort((a, b) => a.isDone - b.isDone);
+
+    this.setState({ todos });
+  }
 
   handleEdit = (editId, newTitleVal) => {
     console.log('handleEdit', editId, newTitleVal); // gaunu abi reiksmes
@@ -51,8 +63,12 @@ class App extends Component {
     // pakeisti isDone
     found.isDone = !found.isDone;
 
+    // issirkuoti pagal isDone
+    // todos.sort((a, b) => a.isDone - b.isDone);
+    this.sortTodos();
+
     //              todos: todos
-    this.setState({ todos });
+    // this.setState({ todos });
   };
 
   handleDelete = (idOfTodoThatWasPressed) => {
@@ -77,7 +93,7 @@ class App extends Component {
       isEditOn: false,
     };
     // pridedam prie kopijos nauja todo obj
-    todosPlusNew.push(newTodo);
+    todosPlusNew.unshift(newTodo);
 
     // set State atnaujima, todos ir currentTodoId
     this.setState({ todos: todosPlusNew, currentTodoId: this.state.currentTodoId + 1 });
