@@ -10,6 +10,10 @@ class FetchTest extends Component {
     this.setState({ todoTitle: e.target.value });
   };
 
+  componentDidMount() {}
+
+  getTodos = () => {};
+
   handleNewTodo = () => {
     console.log('veikia new todo');
     const newTodo = {
