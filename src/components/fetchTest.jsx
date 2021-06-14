@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class FetchTest extends Component {
   state = {
     todoTitle: '',
+    todos: [],
   };
 
   syncTitle = (e) => {
@@ -38,6 +39,12 @@ class FetchTest extends Component {
           placeholder="add new todo"
         />
         <button onClick={this.handleNewTodo}>Save New Todo </button>
+        <ul>
+          <li>Go to parrk</li>
+          <li>Go to parrk</li>
+          <li>Go to parrk</li>
+          <li>Go to parrk</li>
+        </ul>
       </div>
     );
   }
