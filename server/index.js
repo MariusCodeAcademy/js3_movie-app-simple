@@ -6,6 +6,10 @@ const { mongoDbString } = require('./config/config');
 
 const PORT = 3002;
 
+const todoApi = require('./api/todoApi');
+
+app.use('/', todoApi);
+
 // prisijungimas prie duomenu bazes
 mongoose
   .connect(mongoDbString, { useNewUrlParser: true, useUnifiedTopology: true })
