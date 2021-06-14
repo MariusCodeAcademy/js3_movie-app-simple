@@ -9,6 +9,10 @@ class FetchTest extends Component {
     this.setState({ todoTitle: e.target.value });
   };
 
+  handleNewTodo = () => {
+    console.log('veikia new todo');
+  };
+
   render() {
     return (
       <div>
@@ -19,6 +23,7 @@ class FetchTest extends Component {
           type="text"
           placeholder="add new todo"
         />
+        <button onClick={this.handleNewTodo}>Save New Todo </button>
       </div>
     );
   }
