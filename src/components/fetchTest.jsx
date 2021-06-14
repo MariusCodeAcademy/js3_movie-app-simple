@@ -11,6 +11,16 @@ class FetchTest extends Component {
 
   handleNewTodo = () => {
     console.log('veikia new todo');
+    const newTodo = {
+      title: this.state.todoTitle,
+    };
+    fetch('http://localhost:3002/api/todos/new', {
+      method: 'POST',
+      body: JSON.stringify(newTodo),
+    })
+      .then((resp) => resp.json())
+      .then((ats) => console.log(ats))
+      .catch((err) => console.log(err));
   };
 
   render() {
