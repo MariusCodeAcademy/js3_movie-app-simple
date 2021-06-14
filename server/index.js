@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 
+const cors = require('cors');
+
 const mongoose = require('mongoose');
 const { mongoDbString } = require('./config/config');
 
 const PORT = 3002;
 
+app.use(cors());
 // middle ware - to get req.body in json
 app.use(express.json());
 
