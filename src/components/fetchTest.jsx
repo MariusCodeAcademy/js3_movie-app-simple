@@ -10,9 +10,16 @@ class FetchTest extends Component {
     this.setState({ todoTitle: e.target.value });
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.getTodos();
+  }
 
-  getTodos = () => {};
+  getTodos = () => {
+    fetch('http://localhost:3002/api/todos')
+      .then((resp) => resp.json())
+      .then((data) => this.setState({ todos: data }))
+      .catch((err) => console.log(err));
+  };
 
   handleNewTodo = () => {
     console.log('veikia new todo');
@@ -28,7 +35,11 @@ class FetchTest extends Component {
       body: JSON.stringify(newTodo),
     })
       .then((resp) => resp.json())
-      .then((ats) => console.log(ats))
+      .then((ats) => {
+        console.log(ats);
+        this.getTodos();
+        this.setState({ todoTitle: '' });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -44,10 +55,9 @@ class FetchTest extends Component {
         />
         <button onClick={this.handleNewTodo}>Save New Todo </button>
         <ul>
-          <li>Go to parrk</li>
-          <li>Go to parrk</li>
-          <li>Go to parrk</li>
-          <li>Go to parrk</li>
+          {this.state.todos.map((t) => (
+            <li key={t._id}>{t.title}</li>
+          ))}
         </ul>
       </div>
     );
