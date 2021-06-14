@@ -9,12 +9,16 @@ import './app.css';
 class App extends Component {
   state = {
     todos: [
-      { id: 1, isDone: false, title: 'Buy Milk', isEditOn: true },
-      { id: 2, isDone: true, title: 'Buy Tv' },
-      { id: 3, isDone: false, title: 'Go to Park' },
-      { id: 4, isDone: true, title: 'Learn React' },
+      { id: 1, isDone: false, title: 'Buy Milk', isEditOn: false },
+      { id: 2, isDone: true, title: 'Buy Tv', isEditOn: false },
+      { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
+      { id: 4, isDone: true, title: 'Learn React', isEditOn: false },
     ],
     currentTodoId: 4,
+  };
+
+  handleEdit = (editId, newTitleVal) => {
+    console.log('handleEdit', editId, newTitleVal);
   };
 
   handleDoneUndone = (idToCheckUncheck) => {
@@ -59,6 +63,7 @@ class App extends Component {
       <div className="App">
         <AppHeader />
         <AppList
+          onEdit={this.handleEdit}
           onDelete={this.handleDelete}
           onDoneUndone={this.handleDoneUndone}
           todos={this.state.todos}
@@ -70,3 +75,6 @@ class App extends Component {
 }
 
 export default App;
+
+// pasidaryti FavoriteCompooenta
+// tuscia zvaigzdute kai neijungta ir pilna kai ijungta

@@ -27,7 +27,7 @@ class AppTodoEl extends Component {
       <li className="app-todo-el">
         <i onClick={() => this.props.onDoneUndone(id)} className={this.setCheckClasses(isDone)}></i>
         {spanOrTodo}
-        <i className="fa fa-pencil"></i>
+        <i onClick={this.props.onEdit} className="fa fa-pencil"></i>
         <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
       </li>
     );
