@@ -1,4 +1,5 @@
-1. Gryzti laike i pirma commit
+1. Gryzti laike i pirma commit - pasikurt nauja saka
+
 2. susikurti 4 komponentus, Home, about, contact, Navbar
 
 3. isitraukti komponentus i App.jsx
