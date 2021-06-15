@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // importuojam modulini individualu css
 import navStyles from './navbar.module.css';
 
@@ -7,22 +8,22 @@ class Navbar extends Component {
   render() {
     return (
       <nav className={navStyles.navbar}>
-        <a className="logo" href="/">
+        <Link className="logo" to="/">
           ReactApp
-        </a>
+        </Link>
         <div className="">
-          <a className={navStyles.navLink} href="/">
+          <Link className={navStyles.navLink} to="/">
             Home
-          </a>
-          <a className="nav-link" href="/todos">
+          </Link>
+          <Link className="nav-link" to="/todos">
             Todos
-          </a>
-          <a className="nav-link" href="/about">
+          </Link>
+          <Link className="nav-link" to="/about">
             About
-          </a>
-          <a className="nav-link" href="/contact">
+          </Link>
+          <Link className="nav-link" to="/contact">
             Contact Us
-          </a>
+          </Link>
         </div>
       </nav>
     );
