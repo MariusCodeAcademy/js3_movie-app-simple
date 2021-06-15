@@ -18,3 +18,5 @@
 
 10. isitikinti kad veikia be refresh
 
+11. pasidaryti ir uzkrauti 404 puslapi kai nerandamas route
+
