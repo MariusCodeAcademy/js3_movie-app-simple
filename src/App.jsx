@@ -8,6 +8,8 @@ import HomePage from './pages/home';
 import SingleTodo from './pages/singleTodo';
 import NotFound from './pages/404';
 
+// padasyti redirect is / i todos
+
 // app styles
 import './app.css';
 class App extends Component {
