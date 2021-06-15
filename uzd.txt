@@ -17,3 +17,19 @@
 10. isitikinti kad veikia be refresh
 
 11. pasidaryti ir uzkrauti 404 puslapi kai nerandamas route
+
+
+1. npm i react-router-dom
+
+2. ikelti router i index.js
+
+3. main componente
+import { Route, Switch } from 'react-router';
+
+<Route path="/todos" component={TodoPage}></Route>
+
+4. padaryti kad nepersikrautu
+import { Link } from 'react-router-dom';
+<Link className={navStyles.navLink} to="/">
+Home
+</Link>
