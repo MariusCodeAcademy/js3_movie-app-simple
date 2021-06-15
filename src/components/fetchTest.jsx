@@ -20,7 +20,8 @@ class FetchTest extends Component {
 
   handleNewTodo = () => {
     console.log('veikia new todo');
-    GetSendData.createTodo(this.state.todoTitle, () => {
+    GetSendData.createTodo(this.state.todoTitle, (ats) => {
+      console.log('ats is create', ats);
       this.getTodos();
       this.setState({ todoTitle: '' });
     });
