@@ -6,12 +6,12 @@ class Navbar extends Component {
   state = {};
   render() {
     return (
-      <nav className={navStyles.nabar}>
+      <nav className={navStyles.navbar}>
         <a className="logo" href="/">
           ReactApp
         </a>
-        <div className="nav-links">
-          <a className="nav-link" href="/">
+        <div className="">
+          <a className={navStyles.navLink} href="/">
             Home
           </a>
           <a className="nav-link" href="/todos">
@@ -21,7 +21,7 @@ class Navbar extends Component {
             About
           </a>
           <a className="nav-link" href="/contact">
-            About
+            Contact Us
           </a>
         </div>
       </nav>
