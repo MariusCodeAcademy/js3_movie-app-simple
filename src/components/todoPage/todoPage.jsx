@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppHeader from '../appHeader/appHeader';
 import AppList from '../appList/appList';
 import AppAddTodo from '../appAddTodo/appAddTodo';
+import { Link } from 'react-router-dom';
 
 import './todo.css';
 
@@ -109,6 +110,7 @@ class TodoPage extends Component {
           todos={this.state.todos}
         />
         <AppAddTodo onAddTodo={this.handleAddTodo} />
+        <Link to="/about">Go to About us page</Link>
       </div>
     );
   }
