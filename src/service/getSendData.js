@@ -14,22 +14,33 @@ export default class GetSendData {
     succesCallback(data);
   }
 
-  static createTodo(title, successCallback) {
+  static async createTodo(title, successCallback) {
     const newTodo = {
       title: title,
     };
-    fetch(GetSendData.todoApiUrl + '/new', {
+    // fetch(GetSendData.todoApiUrl + '/new', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(newTodo),
+    // })
+    //   .then((resp) => resp.json())
+    //   .then((ats) => {
+    //     successCallback(ats);
+    //   })
+    //   .catch((err) => console.log(err));
+
+    const resp = await fetch(GetSendData.todoApiUrl + '/new', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newTodo),
-    })
-      .then((resp) => resp.json())
-      .then((ats) => {
-        successCallback(ats);
-      })
-      .catch((err) => console.log(err));
+    });
+    const ats = await resp.json();
+    successCallback(ats);
   }
 }
