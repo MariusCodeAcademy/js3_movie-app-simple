@@ -1,5 +1,16 @@
 export default class GetSendData {
   static todoApiUrl = 'http://localhost:3002/api/todos';
+  static reqOptions = {
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+  };
 
   static async getAll(succesCallback) {
     // promise way
@@ -37,6 +48,9 @@ export default class GetSendData {
     //   })
     //   .catch((err) => console.log(err));
 
+    // title,price,qty
+    // batai,40,200
+
     const resp = await fetch(GetSendData.todoApiUrl + '/new', {
       method: 'POST',
       headers: {
@@ -59,14 +73,13 @@ export default class GetSendData {
 
   static async doDoneUndone(id, newStatus, successCallback) {
     console.log(id, newStatus);
-    const resp = await fetch(`${GetSendData.todoApiUrl}/${id}`, {
-      method: 'PATCH',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ isDone: newStatus }),
-    });
+
+    const currentOptions = { ...GetSendData.reqOptions };
+
+    currentOptions.method = 'PATCH';
+    currentOptions.body = JSON.stringify({ isDone: newStatus });
+
+    const resp = await fetch(`${GetSendData.todoApiUrl}/${id}`, currentOptions);
     const ats = await resp.json();
     successCallback(ats);
   }
