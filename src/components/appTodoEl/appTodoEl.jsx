@@ -15,7 +15,7 @@ class AppTodoEl extends Component {
   };
 
   render() {
-    const { id, title, isDone, isEditOn } = this.props.singleTodo;
+    const { _id: id, title, isDone, isEditOn } = this.props.singleTodo;
 
     const spanOrTodo = isEditOn ? (
       <input type="text" value={this.state.editTitle} onChange={this.handleChange} />

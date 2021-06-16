@@ -24,7 +24,12 @@ router.post('/api/todos/new', (req, res) => {
 });
 
 router.delete('/api/todos/:id', (req, res) => {
-  res.json({ msg: 'Trying to delete' });
+  Todo.findByIdAndDelete(req.params.id)
+    .then((result) => res.json({ success: true, deleted: result }))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

@@ -75,9 +75,10 @@ class TodoPage extends Component {
   handleDelete = (idOfTodoThatWasPressed) => {
     console.log('delete pressed', idOfTodoThatWasPressed);
 
-    // filter todos to not include the one that was pressed delete on
-    const todosWithoutOne = this.state.todos.filter((t) => t.id !== idOfTodoThatWasPressed);
-    this.setState({ todos: todosWithoutOne });
+    GetSendData.deleteTodo(idOfTodoThatWasPressed, (ats) => {
+      console.log(ats);
+      this.getTodos();
+    });
   };
 
   handleAddTodo = (todoTitle) => {

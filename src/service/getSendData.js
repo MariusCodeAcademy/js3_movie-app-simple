@@ -48,4 +48,12 @@ export default class GetSendData {
     const ats = await resp.json();
     successCallback(ats);
   }
+
+  static async deleteTodo(idToDelete, successCallback) {
+    const resp = await fetch(`${GetSendData.todoApiUrl}/${idToDelete}`, {
+      method: 'DELETE',
+    });
+    const ats = await resp.json();
+    successCallback(ats);
+  }
 }
