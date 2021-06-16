@@ -51,25 +51,10 @@ class TodoPage extends Component {
     this.setState({ todos: copyTodos });
   };
 
-  handleDoneUndone = (idToCheckUncheck) => {
+  handleDoneUndone = (idToCheckUncheck, newState) => {
     // paspaudus rutuliuka
+    console.log('change statu to', newState);
     console.log('done undone', idToCheckUncheck);
-
-    // pasidaryti todos kopija
-    const todos = [...this.state.todos];
-
-    // surasti todo kuris paspaude ir pakeisti jo busena
-    const found = todos.find((t) => t.id === idToCheckUncheck);
-
-    // pakeisti isDone
-    found.isDone = !found.isDone;
-
-    // issirkuoti pagal isDone
-    // todos.sort((a, b) => a.isDone - b.isDone);
-    this.sortTodos();
-
-    //              todos: todos
-    // this.setState({ todos });
   };
 
   handleDelete = (idOfTodoThatWasPressed) => {

@@ -25,7 +25,10 @@ class AppTodoEl extends Component {
     // salyga ? true : false; terenary operator
     return (
       <li className="app-todo-el">
-        <i onClick={() => this.props.onDoneUndone(id)} className={this.setCheckClasses(isDone)}></i>
+        <i
+          onClick={() => this.props.onDoneUndone(id, !isDone)}
+          className={this.setCheckClasses(isDone)}
+        ></i>
         {spanOrTodo}
         {!isDone ? (
           <i
