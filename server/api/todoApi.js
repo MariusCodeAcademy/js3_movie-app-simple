@@ -23,13 +23,21 @@ router.post('/api/todos/new', (req, res) => {
     .catch((err) => res.status(500).json({ success: false, err }));
 });
 
-router.delete('/api/todos/:id', (req, res) => {
-  Todo.findByIdAndDelete(req.params.id)
-    .then((result) => res.json({ success: true, deleted: result }))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+router.delete('/api/todos/:id', async (req, res) => {
+  // Todo.findByIdAndDelete(req.params.id)
+  //   .then((result) => res.json({ success: true, deleted: result }))
+  //   .catch((err) => {
+  //     console.log(err);
+  //     res.status(500).json(err);
+  //   });
+
+  try {
+    const result = await Todo.findByIdAndDelete(req.params.id);
+    res.json({ success: true, deleted: result });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
