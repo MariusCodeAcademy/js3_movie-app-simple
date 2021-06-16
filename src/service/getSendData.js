@@ -9,9 +9,14 @@ export default class GetSendData {
     //   .catch((err) => console.log(err));
 
     // asyc await way
-    const resp = await fetch(GetSendData.todoApiUrl);
-    const data = await resp.json();
-    succesCallback(data);
+
+    try {
+      const resp = await fetch(GetSendData.todoApiUrl);
+      const data = await resp.json();
+      succesCallback(data);
+    } catch (err) {
+      console.error('getAll errror', err);
+    }
   }
 
   static async createTodo(title, successCallback) {
