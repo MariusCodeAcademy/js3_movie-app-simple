@@ -15,4 +15,4 @@ MERN STACK
 7. handleDelete - padarom kad istrintu irasa is duomenu bazes + atnaujinam sarasa
 
 8. handleDoneUndone - kad veiktu is db. siuncia patch requesta ir pavercia esama reiksme i priesinga
-8. handleDoneUndone - kad veiktu is db. siuncia patch requesta ir pavercia esama reiksme i priesinga
+9. handleEditTodo - kad veiktu is db. siuncia patch requesta ir pavercia esama reiksme i priesinga
