@@ -53,7 +53,9 @@ class TodoPage extends Component {
 
   handleDoneUndone = (idToCheckUncheck, newState) => {
     // paspaudus rutuliuka
-    GetSendData.doDoneUndone(idToCheckUncheck, newState);
+    GetSendData.doDoneUndone(idToCheckUncheck, newState, () => {
+      this.getTodos();
+    });
   };
 
   handleDelete = (idOfTodoThatWasPressed) => {

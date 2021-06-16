@@ -41,5 +41,16 @@ router.delete('/api/todos/:id', async (req, res) => {
 });
 
 //PATCH /api/todos/:id
+router.patch('/api/todos/:id', async (req, res) => {
+  // console.log(`PATCH request got with id, ${req.params.id}, newStatus: ${req.body.isDone}`);
+
+  try {
+    const result = await Todo.findByIdAndUpdate(req.params.id, req.body);
+    res.json({ success: true, result });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
