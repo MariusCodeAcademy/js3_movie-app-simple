@@ -56,4 +56,18 @@ export default class GetSendData {
     const ats = await resp.json();
     successCallback(ats);
   }
+
+  static async doDoneUndone(id, newStatus, successCallback) {
+    console.log(id, newStatus);
+    const resp = await fetch(`${GetSendData.todoApiUrl}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isDone: newStatus }),
+    });
+    const ats = await resp.json();
+    successCallback(ats);
+  }
 }
