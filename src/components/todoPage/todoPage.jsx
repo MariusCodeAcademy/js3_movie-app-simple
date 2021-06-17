@@ -45,7 +45,8 @@ class TodoPage extends Component {
 
   handleEdit = (editId, newTitleVal, editStatus) => {
     console.log('handleEdit', editId, newTitleVal, editStatus); // gaunu abi reiksmes
-
+    // istrinam klaidas
+    this.setState({ errors: { ...this.state.errors, editTodo: '' } });
     if (this.validateInput(newTitleVal)) {
       console.log('klaida update');
       this.setState({
