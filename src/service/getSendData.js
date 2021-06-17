@@ -34,33 +34,20 @@ export default class GetSendData {
     const newTodo = {
       title: title,
     };
-    // fetch(GetSendData.todoApiUrl + '/new', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(newTodo),
-    // })
-    //   .then((resp) => resp.json())
-    //   .then((ats) => {
-    //     successCallback(ats);
-    //   })
-    //   .catch((err) => console.log(err));
 
-    // title,price,qty
-    // batai,40,200
-
-    const resp = await fetch(GetSendData.todoApiUrl + '/new', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTodo),
-    });
-    const ats = await resp.json();
-    successCallback(ats);
+    try {
+      const resp = await fetch(GetSendData.todoApiUrl + '/new', {
+        ...GetSendData.reqOptions,
+        method: 'POST',
+        body: JSON.stringify(newTodo),
+      });
+      console.log('Klaida Create Try');
+      const ats = await resp.json();
+      successCallback(ats);
+    } catch (err) {
+      console.log('Klaida Create Catch');
+      console.log(err);
+    }
   }
 
   static async deleteTodo(idToDelete, successCallback) {

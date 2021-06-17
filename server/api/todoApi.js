@@ -20,7 +20,7 @@ router.post('/api/todos/new', (req, res) => {
     .then((result) => {
       res.json({ success: true, result: result });
     })
-    .catch((err) => res.status(500).json({ success: false, err }));
+    .catch((err) => res.status(400).json({ success: false, err }));
 });
 
 router.delete('/api/todos/:id', async (req, res) => {

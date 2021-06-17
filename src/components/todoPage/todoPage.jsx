@@ -17,7 +17,9 @@ class TodoPage extends Component {
       // { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
       // { id: 4, isDone: true, title: 'Learn React', isEditOn: false },
     ],
-    currentTodoId: 5,
+    errors: {
+      addTodo: '',
+    },
   };
 
   componentDidMount() {
@@ -56,7 +58,12 @@ class TodoPage extends Component {
 
   handleAddTodo = (todoTitle) => {
     console.log('add new todo', todoTitle);
-    GetSendData.createTodo(todoTitle, () => {
+    GetSendData.createTodo(todoTitle, (ats) => {
+      console.log(ats);
+      if (!ats.success) {
+        console.log('gavom klaida fronte');
+        this.setState({ errors: { addTodo: 'field canot be blank' } });
+      }
       this.getTodos();
     });
   };
@@ -71,7 +78,7 @@ class TodoPage extends Component {
           onDoneUndone={this.handleDoneUndone}
           todos={this.state.todos}
         />
-        <AppAddTodo onAddTodo={this.handleAddTodo} />
+        <AppAddTodo errors={this.state.errors.addTodo} onAddTodo={this.handleAddTodo} />
         <Link to="/about">Go to About us page</Link>
       </div>
     );

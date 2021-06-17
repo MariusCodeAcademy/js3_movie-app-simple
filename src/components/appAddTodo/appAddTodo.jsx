@@ -29,12 +29,14 @@ class AppAddTodo extends Component {
       <div className="add-todo-container">
         <i onClick={this.sendAddTodo} className="fa fa-plus-circle add-icon"></i>
         <input
+          className={this.props.errors && 'is-invalid'}
           onChange={this.handleChange}
           onKeyUp={this.handleEnter}
           value={this.state.newTodo}
           type="text"
           placeholder="Add new Todo"
         />
+        {this.props.errors && <p className="error-msg">{this.props.errors}</p>}
       </div>
     );
   }
