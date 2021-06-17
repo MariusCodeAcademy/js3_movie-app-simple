@@ -41,11 +41,9 @@ export default class GetSendData {
         method: 'POST',
         body: JSON.stringify(newTodo),
       });
-      console.log('Klaida Create Try');
       const ats = await resp.json();
       successCallback(ats);
     } catch (err) {
-      console.log('Klaida Create Catch');
       console.log(err);
     }
   }
