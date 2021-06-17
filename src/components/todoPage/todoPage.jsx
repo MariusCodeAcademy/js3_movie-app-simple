@@ -34,6 +34,7 @@ class TodoPage extends Component {
     // console.log('handleEdit', editId, newTitleVal); // gaunu abi reiksmes
     GetSendData.doEdit(editId, newTitleVal, editStatus, () => {
       this.getTodos();
+      //redirect
     });
   };
 

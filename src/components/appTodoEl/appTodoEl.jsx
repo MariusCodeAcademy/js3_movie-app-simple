@@ -23,20 +23,22 @@ class AppTodoEl extends Component {
       <span className={isDone ? 'doneTitle' : ''}>{title}</span>
     );
     // salyga ? true : false; terenary operator
+    // salyga === true && rodom kas yra cia
     return (
       <li className="app-todo-el">
-        <i
-          onClick={() => this.props.onDoneUndone(id, !isDone)}
-          className={this.setCheckClasses(isDone)}
-        ></i>
+        {!isEditOn && (
+          <i
+            onClick={() => this.props.onDoneUndone(id, !isDone)}
+            className={this.setCheckClasses(isDone)}
+          ></i>
+        )}
+
         {spanOrTodo}
-        {!isDone ? (
+        {!isDone && (
           <i
             onClick={() => this.props.onEdit(id, this.state.editTitle, isEditOn)}
             className="fa fa-pencil"
           ></i>
-        ) : (
-          ''
         )}
 
         <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
