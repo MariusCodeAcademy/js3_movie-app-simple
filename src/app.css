@@ -25,13 +25,4 @@ input[type='text'] {
   background-color: rgb(255, 206, 198);
 }
 
-.error-msg {
-  color: snow;
-  background-color: tomato;
-  display: inline-block;
-  padding: 0.2em 0.6em;
-  border-radius: 0.2em;
-  font-size: small;
-}
-
 /* App js  */

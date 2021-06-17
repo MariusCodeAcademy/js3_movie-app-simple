@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { validateTitle } from '../../service/validate';
 import './style.css';
+import SimpleAlert from '../common/alert/alert';
 class AppAddTodo extends Component {
   state = {
     newTodo: '',
+    onOf: true,
   };
 
   handleChange = (event) => {
@@ -12,6 +14,7 @@ class AppAddTodo extends Component {
   };
 
   sendAddTodo = () => {
+    this.setState({ onOf: true });
     const { newTodo } = this.state;
     // nukerpam tarpus is abieju pusiu
 
@@ -32,6 +35,11 @@ class AppAddTodo extends Component {
     e.keyCode === 13 && this.sendAddTodo();
   };
 
+  hideAlert = () => {
+    console.log('hideAlert add todo');
+    this.setState({ onOf: false });
+  };
+
   render() {
     return (
       <div className="add-todo-container">
@@ -44,7 +52,11 @@ class AppAddTodo extends Component {
           type="text"
           placeholder="Add new Todo"
         />
-        {this.props.errors && <p className="error-msg">{this.props.errors}</p>}
+        {this.props.errors && (
+          <SimpleAlert onOf={this.state.onOf} hideAlert={this.hideAlert}>
+            {this.props.errors}
+          </SimpleAlert>
+        )}
       </div>
     );
   }

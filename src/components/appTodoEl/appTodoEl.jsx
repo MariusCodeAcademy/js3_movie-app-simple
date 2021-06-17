@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import SimpleAlert from '../common/alert/alert';
 
 class AppTodoEl extends Component {
   // padaryti kad ikonele butu priklausoma nuo isDone savybes
@@ -8,10 +9,21 @@ class AppTodoEl extends Component {
   // paspaudus pirma icona bublinam eventa iki app.jsx ir ten vygdom handleCheckUncheck
   state = {
     editTitle: this.props.singleTodo.title,
+    onOf: true,
   };
 
   handleChange = (event) => {
     this.setState({ editTitle: event.target.value });
+  };
+
+  hideAlert = () => {
+    this.setState({ onOf: false });
+  };
+
+  showAlertAndSendProps = () => {
+    const { _id: id, isEditOn } = this.props.singleTodo;
+    this.setState({ onOf: true });
+    this.props.onEdit(id, this.state.editTitle, isEditOn);
   };
 
   render() {
@@ -39,14 +51,11 @@ class AppTodoEl extends Component {
         )}
 
         {spanOrTodo}
-        {!isDone && (
-          <i
-            onClick={() => this.props.onEdit(id, this.state.editTitle, isEditOn)}
-            className="fa fa-pencil"
-          ></i>
-        )}
+        {!isDone && <i onClick={this.showAlertAndSendProps} className="fa fa-pencil"></i>}
 
-        {isEditOn && this.props.errors && <p className="error-msg">{this.props.errors}</p>}
+        {isEditOn && this.props.errors && this.state.onOf && (
+          <SimpleAlert hideAlert={this.hideAlert}>{this.props.errors}</SimpleAlert>
+        )}
 
         <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
       </li>
