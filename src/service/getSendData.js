@@ -22,7 +22,7 @@ export default class GetSendData {
     // asyc await way
 
     try {
-      const resp = await fetch(GetSendData.todoApiUrl);
+      const resp = await fetch(GetSendData.todoApiUrl, GetSendData.reqOptions);
       const data = await resp.json();
       succesCallback(data);
     } catch (err) {
@@ -75,12 +75,22 @@ export default class GetSendData {
     console.log(id, newStatus);
 
     const currentOptions = { ...GetSendData.reqOptions };
-
     currentOptions.method = 'PATCH';
     currentOptions.body = JSON.stringify({ isDone: newStatus });
 
     const resp = await fetch(`${GetSendData.todoApiUrl}/${id}`, currentOptions);
     const ats = await resp.json();
     successCallback(ats);
+  }
+
+  static async doEdit(id, titleVal, currentEditStatus, successCallback) {
+    console.log(id, titleVal, currentEditStatus);
+    const resp = await fetch(`${GetSendData.todoApiUrl}/edit/${id}`, {
+      ...GetSendData.reqOptions,
+      method: 'PATCH',
+      body: JSON.stringify({ isEditOn: !currentEditStatus, title: titleVal }),
+    });
+    const data = await resp.json();
+    successCallback(data);
   }
 }

@@ -12,8 +12,8 @@ import './todo.css';
 class TodoPage extends Component {
   state = {
     todos: [
-      // { id: 1, isDone: false, title: 'Buy Milk', isEditOn: false },
-      // { id: 2, isDone: true, title: 'Buy Tv', isEditOn: false },
+      // { id: 1, isDone: false, title: 'Buy Milk', isEditOn: true },
+      // { id: 2, isDone: false, title: 'Buy Tv', isEditOn: false },
       // { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
       // { id: 4, isDone: true, title: 'Learn React', isEditOn: false },
     ],
@@ -30,25 +30,11 @@ class TodoPage extends Component {
     });
   };
 
-  handleEdit = (editId, newTitleVal) => {
-    console.log('handleEdit', editId, newTitleVal); // gaunu abi reiksmes
-
-    // kai turiu id pakeisti to el isEditOn savybe i priesinga dabartinei
-    // pasidaryti kopija todos
-    const copyTodos = [...this.state.todos];
-
-    // surasti ta obj kuris buvo paspaustas
-    const found = copyTodos.find((t) => t.id === editId);
-
-    // patikrinti ar reikia issaugoti reiksme
-    if (found.isEditOn) {
-      found.title = newTitleVal;
-    }
-
-    // isversti boolean reiksme
-    found.isEditOn = !found.isEditOn;
-    // set state
-    this.setState({ todos: copyTodos });
+  handleEdit = (editId, newTitleVal, editStatus) => {
+    // console.log('handleEdit', editId, newTitleVal); // gaunu abi reiksmes
+    GetSendData.doEdit(editId, newTitleVal, editStatus, () => {
+      this.getTodos();
+    });
   };
 
   handleDoneUndone = (idToCheckUncheck, newState) => {

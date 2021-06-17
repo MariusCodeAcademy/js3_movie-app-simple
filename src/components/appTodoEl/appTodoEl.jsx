@@ -32,7 +32,7 @@ class AppTodoEl extends Component {
         {spanOrTodo}
         {!isDone ? (
           <i
-            onClick={() => this.props.onEdit(id, this.state.editTitle)}
+            onClick={() => this.props.onEdit(id, this.state.editTitle, isEditOn)}
             className="fa fa-pencil"
           ></i>
         ) : (
