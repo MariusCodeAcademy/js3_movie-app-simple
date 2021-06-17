@@ -19,6 +19,7 @@ class TodoPage extends Component {
     ],
     errors: {
       addTodo: '',
+      editTodo: '',
     },
   };
 
@@ -32,15 +33,30 @@ class TodoPage extends Component {
     });
   };
 
-  validateInput(val) {}
+  validateInput(val) {
+    const trimed = val.trim();
+    if (trimed.length <= 3) {
+      // klaida
+      return 'The title is too short';
+    }
+    // no erorr
+    return false;
+  }
 
   handleEdit = (editId, newTitleVal, editStatus) => {
-    // console.log('handleEdit', editId, newTitleVal); // gaunu abi reiksmes
-    this.validateInput(newTitleVal);
-    GetSendData.doEdit(editId, newTitleVal, editStatus, () => {
-      this.getTodos();
-      //redirect
-    });
+    console.log('handleEdit', editId, newTitleVal, editStatus); // gaunu abi reiksmes
+
+    if (this.validateInput(newTitleVal)) {
+      console.log('klaida update');
+      this.setState({
+        errors: { ...this.state.errors, editTodo: this.validateInput(newTitleVal) },
+      });
+    } else {
+      GetSendData.doEdit(editId, newTitleVal, editStatus, () => {
+        this.getTodos();
+        //redirect
+      });
+    }
   };
 
   handleDoneUndone = (idToCheckUncheck, newState) => {
@@ -86,6 +102,7 @@ class TodoPage extends Component {
           onDelete={this.handleDelete}
           onDoneUndone={this.handleDoneUndone}
           todos={this.state.todos}
+          errors={this.state.errors.editTodo}
         />
         <AppAddTodo
           onErrorFeedback={this.handleError}
