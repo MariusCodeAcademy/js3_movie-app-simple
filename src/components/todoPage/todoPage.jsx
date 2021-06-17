@@ -58,6 +58,7 @@ class TodoPage extends Component {
 
   handleAddTodo = (todoTitle) => {
     console.log('add new todo', todoTitle);
+    this.setState({ errors: { addTodo: '' } });
     GetSendData.createTodo(todoTitle, (ats) => {
       console.log(ats);
       if (!ats.success) {
@@ -66,6 +67,11 @@ class TodoPage extends Component {
       }
       this.getTodos();
     });
+  };
+
+  handleError = (errorObj) => {
+    console.log('errorObj', errorObj);
+    this.setState({ errors: errorObj });
   };
 
   render() {
@@ -78,7 +84,11 @@ class TodoPage extends Component {
           onDoneUndone={this.handleDoneUndone}
           todos={this.state.todos}
         />
-        <AppAddTodo errors={this.state.errors.addTodo} onAddTodo={this.handleAddTodo} />
+        <AppAddTodo
+          onErrorFeedback={this.handleError}
+          errors={this.state.errors.addTodo}
+          onAddTodo={this.handleAddTodo}
+        />
         <Link to="/about">Go to About us page</Link>
       </div>
     );
