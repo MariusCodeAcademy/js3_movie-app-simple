@@ -11,12 +11,15 @@ class AppAddTodo extends Component {
   };
 
   sendAddTodo = () => {
-    if (this.state.newTodo.length <= 3) {
+    const { newTodo } = this.state;
+    // nukerpam tarpus is abieju pusiu
+    const trimmedTodo = newTodo.trim();
+    if (trimmedTodo.length <= 3) {
       this.props.onErrorFeedback({ addTodo: 'The title is too short' });
       return;
     }
     console.log('sendAddTodo');
-    this.props.onAddTodo(this.state.newTodo);
+    this.props.onAddTodo(trimmedTodo);
     this.setState({ newTodo: '' });
   };
 

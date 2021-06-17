@@ -32,8 +32,11 @@ class TodoPage extends Component {
     });
   };
 
+  validateInput(val) {}
+
   handleEdit = (editId, newTitleVal, editStatus) => {
     // console.log('handleEdit', editId, newTitleVal); // gaunu abi reiksmes
+    this.validateInput(newTitleVal);
     GetSendData.doEdit(editId, newTitleVal, editStatus, () => {
       this.getTodos();
       //redirect
