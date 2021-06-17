@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import SimpleAlert from '../common/alert/alert';
 
 class AppTodoEl extends Component {
   // padaryti kad ikonele butu priklausoma nuo isDone savybes
@@ -8,32 +9,52 @@ class AppTodoEl extends Component {
   // paspaudus pirma icona bublinam eventa iki app.jsx ir ten vygdom handleCheckUncheck
   state = {
     editTitle: this.props.singleTodo.title,
+    onOf: true,
   };
 
   handleChange = (event) => {
     this.setState({ editTitle: event.target.value });
   };
 
+  hideAlert = () => {
+    this.setState({ onOf: false });
+  };
+
+  showAlertAndSendProps = () => {
+    const { _id: id, isEditOn } = this.props.singleTodo;
+    this.setState({ onOf: true });
+    this.props.onEdit(id, this.state.editTitle, isEditOn);
+  };
+
   render() {
-    const { id, title, isDone, isEditOn } = this.props.singleTodo;
+    const { _id: id, title, isDone, isEditOn } = this.props.singleTodo;
 
     const spanOrTodo = isEditOn ? (
-      <input type="text" value={this.state.editTitle} onChange={this.handleChange} />
+      <input
+        className={this.props.errors && 'is-invalid'}
+        type="text"
+        value={this.state.editTitle}
+        onChange={this.handleChange}
+      />
     ) : (
       <span className={isDone ? 'doneTitle' : ''}>{title}</span>
     );
     // salyga ? true : false; terenary operator
+    // salyga === true && rodom kas yra cia
     return (
       <li className="app-todo-el">
-        <i onClick={() => this.props.onDoneUndone(id)} className={this.setCheckClasses(isDone)}></i>
-        {spanOrTodo}
-        {!isDone ? (
+        {!isEditOn && (
           <i
-            onClick={() => this.props.onEdit(id, this.state.editTitle)}
-            className="fa fa-pencil"
+            onClick={() => this.props.onDoneUndone(id, !isDone)}
+            className={this.setCheckClasses(isDone)}
           ></i>
-        ) : (
-          ''
+        )}
+
+        {spanOrTodo}
+        {!isDone && <i onClick={this.showAlertAndSendProps} className="fa fa-pencil"></i>}
+
+        {isEditOn && this.props.errors && this.state.onOf && (
+          <SimpleAlert hideAlert={this.hideAlert}>{this.props.errors}</SimpleAlert>
         )}
 
         <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>

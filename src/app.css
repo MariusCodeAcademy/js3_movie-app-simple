@@ -20,14 +20,9 @@ input[type='text'] {
   padding: 0.1em;
 }
 
-/* App js  */
-
-.App {
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top: 7%;
-  border-radius: 1em;
-  border: 1px solid #333;
-  overflow: hidden;
-  padding: 1em;
+.is-invalid {
+  border-color: tomato;
+  background-color: rgb(255, 206, 198);
 }
+
+/* App js  */
