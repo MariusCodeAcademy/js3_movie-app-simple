@@ -56,7 +56,7 @@ router.patch('/api/todos/:id', async (req, res) => {
 
 // edit
 router.patch('/api/todos/edit/:id', async (req, res) => {
-  console.log('patch to edit endpoint', req.params.id, req.body.isEditOn);
+  // console.log('patch to edit endpoint', req.params.id, req.body.isEditOn);
 
   try {
     const result = await Todo.findByIdAndUpdate(req.params.id, req.body);

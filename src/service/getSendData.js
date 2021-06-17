@@ -84,7 +84,7 @@ export default class GetSendData {
   }
 
   static async doEdit(id, titleVal, currentEditStatus, successCallback) {
-    console.log(id, titleVal, currentEditStatus);
+    // console.log(id, titleVal, currentEditStatus);
     const resp = await fetch(`${GetSendData.todoApiUrl}/edit/${id}`, {
       ...GetSendData.reqOptions,
       method: 'PATCH',
