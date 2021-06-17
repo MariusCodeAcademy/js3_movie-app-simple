@@ -52,10 +52,8 @@ class AppAddTodo extends Component {
           type="text"
           placeholder="Add new Todo"
         />
-        {this.props.errors && (
-          <SimpleAlert onOf={this.state.onOf} hideAlert={this.hideAlert}>
-            {this.props.errors}
-          </SimpleAlert>
+        {this.props.errors && this.state.onOf && (
+          <SimpleAlert hideAlert={this.hideAlert}>{this.props.errors}</SimpleAlert>
         )}
       </div>
     );
