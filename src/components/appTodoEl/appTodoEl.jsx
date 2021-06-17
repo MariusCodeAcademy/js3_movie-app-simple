@@ -45,7 +45,6 @@ class AppTodoEl extends Component {
             className="fa fa-pencil"
           ></i>
         )}
-        <br />
 
         {isEditOn && this.props.errors && <p className="error-msg">{this.props.errors}</p>}
 

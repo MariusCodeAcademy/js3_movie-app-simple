@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 // fetch helper class
 import GetSendData from '../../service/getSendData';
+import { validateTitle } from '../../service/validate';
 
 import './todo.css';
 
@@ -33,24 +34,14 @@ class TodoPage extends Component {
     });
   };
 
-  validateInput(val) {
-    const trimed = val.trim();
-    if (trimed.length <= 3) {
-      // klaida
-      return 'The title is too short';
-    }
-    // no erorr
-    return false;
-  }
-
   handleEdit = (editId, newTitleVal, editStatus) => {
     console.log('handleEdit', editId, newTitleVal, editStatus); // gaunu abi reiksmes
     // istrinam klaidas
     this.setState({ errors: { ...this.state.errors, editTodo: '' } });
-    if (this.validateInput(newTitleVal)) {
+    if (validateTitle(newTitleVal)) {
       console.log('klaida update');
       this.setState({
-        errors: { ...this.state.errors, editTodo: this.validateInput(newTitleVal) },
+        errors: { ...this.state.errors, editTodo: validateTitle(newTitleVal) },
       });
     } else {
       GetSendData.doEdit(editId, newTitleVal, editStatus, () => {
