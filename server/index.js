@@ -18,7 +18,10 @@ app.use('/', todoApi);
 
 // prisijungimas prie duomenu bazes
 mongoose
-  .connect(mongoDbString, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.REACT_APP_MONGO_CONNECT || mongoDbString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((result) => {
     console.log('Conneced to Mongo ooooooooose');
     app.listen(PORT, console.log(`backEnd ondline on port ${PORT}`));
