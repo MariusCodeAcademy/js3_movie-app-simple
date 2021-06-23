@@ -19,9 +19,14 @@
 // 10. prideti 'All genres' pasirinkima
 
 const ListGroup = (props) => {
+  const { items } = props;
   return (
     <ul className="list-group">
-      <li className="list-group-item">as esu zanras </li>
+      {items.map((item) => (
+        <li key={item._id} className="list-group-item">
+          {item.name}
+        </li>
+      ))}
     </ul>
   );
 };
