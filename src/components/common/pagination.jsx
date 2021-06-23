@@ -1,10 +1,10 @@
+import PropTypes from 'prop-types';
 // statless functional component
 const Pagination = (props) => {
   const { itemCount, pageSize, onPageChange, currentPage } = props;
   // ic 9 ps 4
   // [1, 2, 3]
   const pageCount = Math.ceil(itemCount / pageSize);
-  console.log('currentPage', currentPage);
   // jei tik vienas psl nerodom puslapiavimo
   if (pageCount === 1) return null;
 
@@ -15,8 +15,6 @@ const Pagination = (props) => {
     }
     return arr;
   };
-
-  console.log(pages());
 
   return (
     <nav>
@@ -32,6 +30,13 @@ const Pagination = (props) => {
       </ul>
     </nav>
   );
+};
+
+Pagination.propTypes = {
+  itemCount: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired,
 };
 
 export default Pagination;
