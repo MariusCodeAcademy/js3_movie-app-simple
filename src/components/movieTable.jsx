@@ -11,6 +11,11 @@ class MovieTable extends Component {
     genres: [],
     pageSize: 4,
     currentPage: 1,
+    testArr: [
+      { id: 1, title: 'blue' },
+      { id: 2, title: 'red' },
+      { id: 3, title: 'green' },
+    ],
   };
 
   componentDidMount() {
@@ -46,12 +51,7 @@ class MovieTable extends Component {
         <h3 className="my-4">Please see out movies</h3>
         <div className="row">
           <div className="col-3">
-            <ListGroup
-              valueProperty="_id"
-              textProperty="name"
-              onItemSelect={this.handleGenreChange}
-              items={genres}
-            />
+            <ListGroup onItemSelect={this.handleGenreChange} items={genres} />
           </div>
           <div className="col">
             <p>Showing {mv.length} movies in out store</p>
@@ -79,6 +79,12 @@ class MovieTable extends Component {
             />
           </div>
         </div>
+        <ListGroup
+          items={this.state.testArr}
+          textProperty="title"
+          valueProperty="id"
+          onItemSelect={this.handleGenreChange}
+        />
       </div>
     );
   }
