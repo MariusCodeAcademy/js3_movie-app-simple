@@ -19,7 +19,11 @@
 // 10. prideti 'All genres' pasirinkima
 
 const ListGroup = (props) => {
-  return null;
+  return (
+    <ul className="list-group">
+      <li className="list-group-item">as esu zanras </li>
+    </ul>
+  );
 };
 
 export default ListGroup;

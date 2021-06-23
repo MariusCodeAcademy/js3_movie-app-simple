@@ -4,6 +4,7 @@ import { getGenres } from '../services/fakeGenreService';
 import { paginate } from '../utils/paginate';
 import MovieRow from './movieRow';
 import Pagination from './common/pagination';
+import ListGroup from './common/listGroup';
 class MovieTable extends Component {
   state = {
     movies: [],
@@ -28,7 +29,7 @@ class MovieTable extends Component {
   };
 
   render() {
-    const { movies: mv, currentPage, pageSize } = this.state;
+    const { movies: mv, currentPage, pageSize, genres } = this.state;
     if (mv.length === 0)
       return <div className="alert alert-warning">There are no movies at the moment</div>;
 
@@ -39,7 +40,9 @@ class MovieTable extends Component {
       <div className="movie">
         <h3 className="my-4">Please see out movies</h3>
         <div className="row">
-          <div className="col-3">Genres</div>
+          <div className="col-3">
+            <ListGroup items={genres} />
+          </div>
           <div className="col">
             <p>Showing {mv.length} movies in out store</p>
             <table className="table table-striped ">
