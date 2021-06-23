@@ -5,6 +5,8 @@ const Pagination = (props) => {
   // [1, 2, 3]
   const pageCount = Math.ceil(itemCount / pageSize);
   console.log('pageCount', pageCount);
+  // jei tik vienas psl nerodom puslapiavimo
+  if (pageCount === 1) return null;
 
   const pages = () => {
     const arr = [];
@@ -19,11 +21,13 @@ const Pagination = (props) => {
   return (
     <nav>
       <ul className="pagination">
-        <li className="page-item">
-          <a href="/" className="page-link">
-            1
-          </a>
-        </li>
+        {pages().map((pageNum) => (
+          <li key={pageNum} className="page-item">
+            <a href="/" className="page-link">
+              {pageNum}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );
