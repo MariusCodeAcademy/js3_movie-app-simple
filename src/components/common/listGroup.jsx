@@ -22,14 +22,14 @@
 // kiek items per puslapi mes norim rodyti
 
 const ListGroup = (props) => {
-  const { items, onItemSelect, textProperty, valueProperty } = props;
+  const { items, selectedItem, onItemSelect, textProperty, valueProperty } = props;
   return (
     <ul className="list-group">
       {items.map((item) => (
         <li
           onClick={() => onItemSelect(item)}
           key={item[valueProperty]}
-          className="list-group-item"
+          className={'list-group-item ' + (item === selectedItem ? 'active' : '')}
         >
           {item[textProperty]}
         </li>
