@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { getMovies } from '../services/fakeMovieService';
 import MovieRow from './movieRow';
+import Pagination from './common/pagination';
 class MovieTable extends Component {
   state = {
     movies: getMovies(),
+    pageSize: 4,
+  };
+
+  handleDelete = (movieId) => {
+    console.log('You are trying to delete, WHy ?', movieId);
+    const moviesWithoutTheOneWeDeleted = this.state.movies.filter((m) => m._id !== movieId);
+    this.setState({ movies: moviesWithoutTheOneWeDeleted });
   };
 
   render() {
@@ -31,14 +39,10 @@ class MovieTable extends Component {
             ))}
           </tbody>
         </table>
+        <Pagination itemCount={mv.length} pageSize={this.state.pageSize} />
       </div>
     );
   }
-  handleDelete = (movieId) => {
-    console.log('You are trying to delete, WHy ?', movieId);
-    const moviesWithoutTheOneWeDeleted = this.state.movies.filter((m) => m._id !== movieId);
-    this.setState({ movies: moviesWithoutTheOneWeDeleted });
-  };
 }
 
 export default MovieTable;

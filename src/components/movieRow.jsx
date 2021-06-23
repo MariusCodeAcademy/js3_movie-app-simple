@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class MovieRow extends Component {
   state = {};
   render() {
-    console.log('this.props', this.props);
+    // console.log('this.props', this.props);
     const { movie } = this.props;
     return (
       <tr>
