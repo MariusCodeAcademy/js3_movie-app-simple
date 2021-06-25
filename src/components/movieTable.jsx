@@ -19,7 +19,9 @@ class MovieTable extends Component {
   };
 
   componentDidMount() {
-    this.setState({ movies: getMovies(), genres: getGenres() });
+    // prideti papildoma item i genres
+    const genres = [{ _id: '', name: 'All genres' }, ...getGenres()];
+    this.setState({ movies: getMovies(), genres: genres });
   }
 
   handleDelete = (movieId) => {
@@ -35,7 +37,7 @@ class MovieTable extends Component {
 
   handleGenreChange = (genre) => {
     // console.log('handleChange', genre);
-    this.setState({ currentGenre: genre });
+    this.setState({ currentGenre: genre, currentPage: 1 });
   };
 
   render() {
@@ -43,7 +45,8 @@ class MovieTable extends Component {
     if (mv.length === 0)
       return <div className="alert alert-warning">There are no movies at the moment</div>;
 
-    const filteredMovies = currentGenre ? mv.filter((m) => m.genre._id === currentGenre._id) : mv;
+    const filteredMovies =
+      currentGenre && currentGenre._id ? mv.filter((m) => m.genre._id === currentGenre._id) : mv;
 
     // paduoti tik tiek movies kiek reikia pagal pagination
     const moviesPaginated = paginate(filteredMovies, currentPage, pageSize);
