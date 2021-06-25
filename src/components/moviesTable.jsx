@@ -13,6 +13,12 @@ class MoviesTable extends Component {
     }
     this.props.onSort(sortColumnCopy);
   };
+
+  renderSortIcon = (iconColumn) => {
+    const { sortBy, order } = this.props.sortColumn;
+    if (iconColumn === sortBy) return <i className={`fa fa-sort-${order}`}></i>;
+    return;
+  };
   // sort icon prie to column kuris siuo metu yra sortinamas
   render() {
     const { moviesPaginated, onDelete } = this.props;
@@ -20,12 +26,16 @@ class MoviesTable extends Component {
       <table className="table table-striped ">
         <thead>
           <tr>
-            <th onClick={() => this.raiseSort('title')}>
-              Title <i className="fa fa-sort-desc"></i>{' '}
+            <th onClick={() => this.raiseSort('title')}>Title {this.renderSortIcon('title')}</th>
+            <th onClick={() => this.raiseSort('genre.name')}>
+              Genre {this.renderSortIcon('genre.name')}{' '}
             </th>
-            <th onClick={() => this.raiseSort('genre.name')}>Genre</th>
-            <th onClick={() => this.raiseSort('numberInStock')}>Stock</th>
-            <th onClick={() => this.raiseSort('dailyRentalRate')}>Rating</th>
+            <th onClick={() => this.raiseSort('numberInStock')}>
+              Stock {this.renderSortIcon('numberInStock')}
+            </th>
+            <th onClick={() => this.raiseSort('dailyRentalRate')}>
+              Rating {this.renderSortIcon('dailyRentalRate')}
+            </th>
             <th></th>
           </tr>
         </thead>
