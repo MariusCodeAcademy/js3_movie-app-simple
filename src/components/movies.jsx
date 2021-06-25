@@ -36,15 +36,7 @@ class Movies extends Component {
     this.setState({ currentGenre: genre, currentPage: 1 });
   };
 
-  handleSort = (sortBy) => {
-    console.log('sortBy', sortBy);
-    const sortColumnCopy = { ...this.state.sortColumn };
-    if (sortColumnCopy.sortBy === sortBy) {
-      sortColumnCopy.order = sortColumnCopy.order === 'asc' ? 'desc' : 'asc';
-    } else {
-      sortColumnCopy.sortBy = sortBy;
-      sortColumnCopy.order = 'asc';
-    }
+  handleSort = (sortColumnCopy) => {
     this.setState({ sortColumn: sortColumnCopy });
   };
 
@@ -57,14 +49,22 @@ class Movies extends Component {
       currentGenre && currentGenre._id ? mv.filter((m) => m.genre._id === currentGenre._id) : mv;
 
     // sort filteredMovies, by sortColumn.sortBy
+
+    const posNeg = {
+      pos: 1,
+      neg: -1,
+    };
     if (sortColumn.order === 'desc') {
-    } else {
+      posNeg.neg = 1;
+      posNeg.pos = -1;
     }
 
-    filteredMovies.sort((a, b) => (a[sortColumn.sortBy] > b[sortColumn.sortBy] ? 1 : -1));
+    filteredMovies.sort((a, b) =>
+      a[sortColumn.sortBy] > b[sortColumn.sortBy] ? posNeg.pos : posNeg.neg
+    );
     // genre.name fix
     if (sortColumn.sortBy === 'genre.name') {
-      filteredMovies.sort((a, b) => (a.genre.name > b.genre.name ? 1 : -1));
+      filteredMovies.sort((a, b) => (a.genre.name > b.genre.name ? posNeg.pos : posNeg.neg));
     }
     // paduoti tik tiek movies kiek reikia pagal pagination
     const moviesPaginated = paginate(filteredMovies, currentPage, pageSize);
@@ -83,6 +83,7 @@ class Movies extends Component {
           <div className="col">
             <p>Showing {moviesPaginated.length} movies in out store</p>
             <MoviesTable
+              sortColumn={sortColumn}
               onSort={this.handleSort}
               moviesPaginated={moviesPaginated}
               onDelete={this.handleDelete}
