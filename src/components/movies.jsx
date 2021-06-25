@@ -11,6 +11,7 @@ class Movies extends Component {
     genres: [],
     pageSize: 4,
     currentPage: 1,
+    sortColumn: { sortBy: 'title', order: 'asc' },
   };
 
   componentDidMount() {
@@ -37,15 +38,21 @@ class Movies extends Component {
 
   handleSort = (sortBy) => {
     console.log('sortBy', sortBy);
+    this.setState({ sortColumn: { sortBy: sortBy, order: 'asc' } });
   };
 
   render() {
-    const { movies: mv, currentPage, pageSize, genres, currentGenre } = this.state;
+    const { movies: mv, currentPage, pageSize, genres, currentGenre, sortColumn } = this.state;
     if (mv.length === 0)
       return <div className="alert alert-warning">There are no movies at the moment</div>;
 
     const filteredMovies =
       currentGenre && currentGenre._id ? mv.filter((m) => m.genre._id === currentGenre._id) : mv;
+
+    // sort filteredMovies, by sortColumn.sortBy
+    // genre.name fix
+
+    filteredMovies.sort((a, b) => (a[sortColumn.sortBy] > b[sortColumn.sortBy] ? 1 : -1));
 
     // paduoti tik tiek movies kiek reikia pagal pagination
     const moviesPaginated = paginate(filteredMovies, currentPage, pageSize);

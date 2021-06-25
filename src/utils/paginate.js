@@ -9,3 +9,12 @@ export function paginate(items, pageNumber, pageSize) {
 
   return items.slice(startIndex, startIndex + pageSize);
 }
+
+// const nameProperty = 'name'
+// const obj = {
+//   name: 'bob',
+//   age: 39
+// }
+
+// obj.name // 'bob
+// obj[nameProperty] // 'bob

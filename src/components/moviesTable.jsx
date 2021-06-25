@@ -9,9 +9,9 @@ class MoviesTable extends Component {
         <thead>
           <tr>
             <th onClick={() => onSort('title')}>Title</th>
-            <th>Genre</th>
-            <th>Stock</th>
-            <th>Rating</th>
+            <th onClick={() => onSort('genre.name')}>Genre</th>
+            <th onClick={() => onSort('numberInStock')}>Stock</th>
+            <th onClick={() => onSort('dailyRentalRate')}>Rating</th>
             <th></th>
           </tr>
         </thead>
