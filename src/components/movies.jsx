@@ -5,17 +5,12 @@ import { paginate } from '../utils/paginate';
 import MovieRow from './movieRow';
 import Pagination from './common/pagination';
 import ListGroup from './common/listGroup';
-class MovieTable extends Component {
+class Movies extends Component {
   state = {
     movies: [],
     genres: [],
     pageSize: 4,
     currentPage: 1,
-    testArr: [
-      { id: 1, title: 'blue' },
-      { id: 2, title: 'red' },
-      { id: 3, title: 'green' },
-    ],
   };
 
   componentDidMount() {
@@ -25,7 +20,7 @@ class MovieTable extends Component {
   }
 
   handleDelete = (movieId) => {
-    console.log('You are trying to delete, WHy ?', movieId);
+    // console.log('You are trying to delete, WHy ?', movieId);
     const moviesWithoutTheOneWeDeleted = this.state.movies.filter((m) => m._id !== movieId);
     this.setState({ movies: moviesWithoutTheOneWeDeleted });
   };
@@ -99,4 +94,4 @@ class MovieTable extends Component {
   }
 }
 
-export default MovieTable;
+export default Movies;
