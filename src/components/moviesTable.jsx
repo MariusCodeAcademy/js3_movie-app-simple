@@ -3,7 +3,7 @@ import MovieRow from './movieRow';
 
 class MoviesTable extends Component {
   raiseSort = (sortBy) => {
-    console.log('sortBy', sortBy);
+    // console.log('sortBy', sortBy);
     const sortColumnCopy = { ...this.props.sortColumn };
     if (sortColumnCopy.sortBy === sortBy) {
       sortColumnCopy.order = sortColumnCopy.order === 'asc' ? 'desc' : 'asc';
@@ -15,7 +15,7 @@ class MoviesTable extends Component {
   };
 
   render() {
-    const { moviesPaginated, onDelete, onSort } = this.props;
+    const { moviesPaginated, onDelete } = this.props;
     return (
       <table className="table table-striped ">
         <thead>

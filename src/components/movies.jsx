@@ -5,6 +5,7 @@ import { paginate } from '../utils/paginate';
 import Pagination from './common/pagination';
 import ListGroup from './common/listGroup';
 import MoviesTable from './moviesTable';
+import { movieSort } from '../utils/sort';
 class Movies extends Component {
   state = {
     movies: [],
@@ -49,25 +50,10 @@ class Movies extends Component {
       currentGenre && currentGenre._id ? mv.filter((m) => m.genre._id === currentGenre._id) : mv;
 
     // sort filteredMovies, by sortColumn.sortBy
+    const sortedMovies = movieSort(sortColumn, filteredMovies);
 
-    const posNeg = {
-      pos: 1,
-      neg: -1,
-    };
-    if (sortColumn.order === 'desc') {
-      posNeg.neg = 1;
-      posNeg.pos = -1;
-    }
-
-    filteredMovies.sort((a, b) =>
-      a[sortColumn.sortBy] > b[sortColumn.sortBy] ? posNeg.pos : posNeg.neg
-    );
-    // genre.name fix
-    if (sortColumn.sortBy === 'genre.name') {
-      filteredMovies.sort((a, b) => (a.genre.name > b.genre.name ? posNeg.pos : posNeg.neg));
-    }
     // paduoti tik tiek movies kiek reikia pagal pagination
-    const moviesPaginated = paginate(filteredMovies, currentPage, pageSize);
+    const moviesPaginated = paginate(sortedMovies, currentPage, pageSize);
 
     return (
       <div className="movie">
