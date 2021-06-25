@@ -7,7 +7,7 @@ export function movieSort(sortColumn, filteredMovies) {
     posNeg.neg = 1;
     posNeg.pos = -1;
   }
-
+  // debugger;
   filteredMovies.sort((a, b) =>
     a[sortColumn.sortBy] > b[sortColumn.sortBy] ? posNeg.pos : posNeg.neg
   );

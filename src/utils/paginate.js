@@ -11,10 +11,13 @@ export function paginate(items, pageNumber, pageSize) {
 }
 
 // const nameProperty = 'name'
+
 // const obj = {
 //   name: 'bob',
 //   age: 39
 // }
 
 // obj.name // 'bob
+// obj['name'] // bob
+// obj.nameProperty // undefined
 // obj[nameProperty] // 'bob

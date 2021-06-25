@@ -13,14 +13,16 @@ class MoviesTable extends Component {
     }
     this.props.onSort(sortColumnCopy);
   };
-
+  // sort icon prie to column kuris siuo metu yra sortinamas
   render() {
     const { moviesPaginated, onDelete } = this.props;
     return (
       <table className="table table-striped ">
         <thead>
           <tr>
-            <th onClick={() => this.raiseSort('title')}>Title</th>
+            <th onClick={() => this.raiseSort('title')}>
+              Title <i className="fa fa-sort-desc"></i>{' '}
+            </th>
             <th onClick={() => this.raiseSort('genre.name')}>Genre</th>
             <th onClick={() => this.raiseSort('numberInStock')}>Stock</th>
             <th onClick={() => this.raiseSort('dailyRentalRate')}>Rating</th>
