@@ -50,9 +50,11 @@ class Movies extends Component {
       currentGenre && currentGenre._id ? mv.filter((m) => m.genre._id === currentGenre._id) : mv;
 
     // sort filteredMovies, by sortColumn.sortBy
-    // genre.name fix
-
     filteredMovies.sort((a, b) => (a[sortColumn.sortBy] > b[sortColumn.sortBy] ? 1 : -1));
+    // genre.name fix
+    if (sortColumn.sortBy === 'genre.name') {
+      filteredMovies.sort((a, b) => (a.genre.name > b.genre.name ? 1 : -1));
+    }
 
     // paduoti tik tiek movies kiek reikia pagal pagination
     const moviesPaginated = paginate(filteredMovies, currentPage, pageSize);
