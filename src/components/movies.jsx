@@ -38,7 +38,14 @@ class Movies extends Component {
 
   handleSort = (sortBy) => {
     console.log('sortBy', sortBy);
-    this.setState({ sortColumn: { sortBy: sortBy, order: 'asc' } });
+    const sortColumnCopy = { ...this.state.sortColumn };
+    if (sortColumnCopy.sortBy === sortBy) {
+      sortColumnCopy.order = sortColumnCopy.order === 'asc' ? 'desc' : 'asc';
+    } else {
+      sortColumnCopy.sortBy = sortBy;
+      sortColumnCopy.order = 'asc';
+    }
+    this.setState({ sortColumn: sortColumnCopy });
   };
 
   render() {
@@ -50,12 +57,15 @@ class Movies extends Component {
       currentGenre && currentGenre._id ? mv.filter((m) => m.genre._id === currentGenre._id) : mv;
 
     // sort filteredMovies, by sortColumn.sortBy
+    if (sortColumn.order === 'desc') {
+    } else {
+    }
+
     filteredMovies.sort((a, b) => (a[sortColumn.sortBy] > b[sortColumn.sortBy] ? 1 : -1));
     // genre.name fix
     if (sortColumn.sortBy === 'genre.name') {
       filteredMovies.sort((a, b) => (a.genre.name > b.genre.name ? 1 : -1));
     }
-
     // paduoti tik tiek movies kiek reikia pagal pagination
     const moviesPaginated = paginate(filteredMovies, currentPage, pageSize);
 
