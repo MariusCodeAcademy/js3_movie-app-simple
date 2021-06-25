@@ -35,6 +35,10 @@ class Movies extends Component {
     this.setState({ currentGenre: genre, currentPage: 1 });
   };
 
+  handleSort = (sortBy) => {
+    console.log('sortBy', sortBy);
+  };
+
   render() {
     const { movies: mv, currentPage, pageSize, genres, currentGenre } = this.state;
     if (mv.length === 0)
@@ -59,7 +63,11 @@ class Movies extends Component {
           </div>
           <div className="col">
             <p>Showing {moviesPaginated.length} movies in out store</p>
-            <MoviesTable moviesPaginated={moviesPaginated} onDelete={this.handleDelete} />
+            <MoviesTable
+              onSort={this.handleSort}
+              moviesPaginated={moviesPaginated}
+              onDelete={this.handleDelete}
+            />
             <Pagination
               currentPage={currentPage}
               onPageChange={this.handlePageChange}
